@@ -41,7 +41,7 @@ from math import sqrt
 from functools import partial
 
 from sense_hat import SenseHat
-from picamera import PiCamera
+from picamera2 import Picamera2
 from gpiozero import MotionSensor, Button
 from gpiozero.pins.rpigpio import RPiGPIOFactory
 pin_factory = RPiGPIOFactory() # NativeFactory has issues on Pi 4
@@ -258,14 +258,16 @@ def test_camera(filename=None):
     is able to capture data, or False otherwise.
     Save the image data to `filename`, if it is not None.
     '''
-    if not test_camera_vcgencmd():
-        return False
     if filename:
         stream = open(filename, 'wb')
     else:
         stream = io.BytesIO()
-    with PiCamera() as camera:
-        camera.capture(stream, 'jpeg')
+    with Picamera2() as camera:
+        cam_info=camera.global_camera_info()
+        if len(cam_info) == 0:
+            return False
+        camera.start()
+        camera.capture_file(stream, format='jpeg')
     result = bool(stream.tell())
     stream.close()
     return result
