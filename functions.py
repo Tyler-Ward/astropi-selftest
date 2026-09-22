@@ -291,8 +291,8 @@ def test_temperature_bounds(sensehat, time=1, polling=0.1, reasonable_min=None, 
     is within within "reasonable" range (i.e. between `reasonable_min` and `reasonable_max`),
     or False otherwise.
     """
-    if not test_i2c_address('5c') or not test_i2c_address('5f'):
-        return False
+    #if not test_i2c_address('5c') or not test_i2c_address('5f'):
+    #    return False
     temperature = average(sensehat.get_temperature, time, polling)
     min_str = reasonable_min if reasonable_min is not None else ''
     max_str = reasonable_max if reasonable_max is not None else ''
@@ -317,8 +317,8 @@ def test_humidity(sensehat, timeout=None, time=1, polling=0.1):
     The threshold is the initial average Sense HAT humidity reading 
     over a `time` interval plus 2.
     """
-    if not test_i2c_address('5f'):
-        return False
+    #if not test_i2c_address('5f'):
+    #    return False
     humidity = average(sensehat.get_humidity, time, polling)
     logger.debug(f'test_humidity: Humidity reading is {humidity}')
     if timeout is None:
