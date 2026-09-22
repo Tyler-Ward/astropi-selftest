@@ -593,7 +593,7 @@ def test_buttons(sensehat, timeout=None, polling=0.1):
 
     def handle(key):
         display(sensehat, keymap[key], pass_colour)
-        keys.remove(key)
+        keys.discard(key)
 
     def handler_a():
         handle('KEY_A')
