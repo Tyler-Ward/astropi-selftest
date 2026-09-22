@@ -41,12 +41,12 @@ if __name__ == '__main__':
         Test(test_gyroscope, 19, args.timeout, requires_sensehat=True),
         Test(test_accelerometer, 20, args.timeout, requires_sensehat=True),
         Test(test_magnetometer, 21, requires_sensehat=True),
-        Test(test_motion,24,args.timeout, requires_sensehat=True)
-        #Test(test_joystick, 24, args.timeout, requires_sensehat=True),
+        Test(test_motion,24,args.timeout, requires_sensehat=True),
+        Test(test_joystick, 25, args.timeout, requires_sensehat=True)
     ]
     if args.timeout:
         tests.append(
-            Test(test_buttons, 25, args.timeout, requires_sensehat=True))
+            Test(test_buttons, 26, args.timeout, requires_sensehat=True))
 
 
     # perform the tests
